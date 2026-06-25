@@ -2,6 +2,11 @@
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    // 保持前端环境绝对纯净，只保留 vite/client 即可，避免污染 DOM 环境下的全局类型（如 setTimeout）
     "types": ["vite/client"],
 
     /* Linting */
@@ -10,5 +15,11 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
+  // vue-tsc 打包时才能真正识别到全自动导入的 ref / reactive 和 Element 组件
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "types/**/*.d.ts"
+  ]
 }
