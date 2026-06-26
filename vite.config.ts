@@ -6,6 +6,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
 import { defineConfig, type ConfigEnv, loadEnv } from 'vite'
 import { name, version } from "./package.json"
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 // 平台名称、版本信息
 const __APP_INFO__ = {
@@ -21,6 +22,12 @@ export default defineConfig(({ mode }: ConfigEnv) => {
   return {
     plugins: [
       vue(),
+      createSvgIconsPlugin({
+        // 指定需要缓存的图标文件夹（我们把图标放在 src/assets/icons 下）
+        iconDirs: [fileURLToPath(new URL('./src/assets/icons', import.meta.url))],
+        // 指定 symbolId 格式（统一前缀 icon-）
+        symbolId: 'icon-[dir]-[name]',
+      }),
       // 自动导入 Vue、Vue Router、Pinia 的相关 API
       AutoImport({
         imports: ['vue', 'vue-router', 'pinia'],
