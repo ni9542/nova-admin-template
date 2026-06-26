@@ -1,0 +1,43 @@
+/* ==========================================================================
+   Nova Admin Template - 核心架构纯 SCSS 变量与 Mixins
+   ========================================================================== */
+
+// 全局布局物理尺寸 (Layout Metrics)
+$sidebar-width: 240px;          // 侧边栏展开宽度
+$sidebar-collapse-width: 64px; // 侧边栏折叠宽度
+$header-height: 60px;          // 顶部导航栏高度
+$tagsbar-height: 38px;          // 动态标签页栏高度
+
+// 层级关系约束 (Z-Index Hierarchy)
+$z-index-tagsbar: 9;
+$z-index-header: 10;
+$z-index-sidebar: 1001;
+
+// 全局高频过渡动画过渡 (Animation Transitions)
+$transition-base: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+$transition-color: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+// 响应式布局断点 (Responsive Breakpoints)
+$breakpoints: (
+        'xs': (max-width: 767px),
+        'sm': (min-width: 768px),
+        'md': (min-width: 992px),
+        'lg': (min-width: 1200px),
+        'xl': (min-width: 1920px)
+) !default;
+
+// 快速调用响应式的全局 Mixin
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  } @else {
+    @warn "未找到定义的断点: #{$breakpoint}.";
+  }
+}
+
+// 现代后台高频微光阴影 Mixin
+@mixin nova-shadow {
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.03), 0 1px 2px 0 rgba(0, 0, 0, 0.02);
+}

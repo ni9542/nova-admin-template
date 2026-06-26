@@ -6,6 +6,8 @@
     "paths": {
       "@/*": ["src/*"]
     },
+    "moduleResolution": "bundler",
+    "module": "ESNext",
     // 保持前端环境绝对纯净，只保留 vite/client 即可，避免污染 DOM 环境下的全局类型（如 setTimeout）
     "types": ["vite/client"],
 

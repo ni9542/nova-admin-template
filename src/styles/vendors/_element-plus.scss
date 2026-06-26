@@ -1,0 +1,221 @@
+/* ==========================================================================
+   Nova Admin Template - Element Plus 全组件高质感生产级样式重写覆盖
+   ========================================================================== */
+
+:root {
+  /* --------------------------------------------------------------------------
+     核心品牌主色与状态色无缝侵入式替换
+     -------------------------------------------------------------------------- */
+  --el-color-primary: var(--nova-color-primary);
+  --el-color-primary-light-3: var(--nova-color-primary-hover);
+  --el-color-primary-light-5: var(--nova-color-primary-hover);
+  --el-color-primary-light-7: var(--nova-color-primary-light);
+  --el-color-primary-light-8: var(--nova-color-primary-light);
+  --el-color-primary-light-9: var(--nova-color-primary-light);
+  --el-color-primary-dark-2: var(--nova-color-primary-active);
+
+  --el-color-success: var(--nova-color-success);
+  --el-color-warning: var(--nova-color-warning);
+  --el-color-danger: var(--nova-color-danger);
+  --el-color-info: var(--nova-color-info);
+
+  /* --------------------------------------------------------------------------
+     字体与基础边框圆角规范重塑
+     -------------------------------------------------------------------------- */
+  --el-border-radius-base: var(--nova-radius-base);
+  --el-border-radius-small: var(--nova-radius-small);
+  --el-border-radius-round: var(--nova-radius-large);
+
+  --el-text-color-primary: var(--nova-text-main);
+  --el-text-color-regular: var(--nova-text-regular);
+  --el-text-color-secondary: var(--nova-text-secondary);
+  --el-text-color-placeholder: var(--nova-text-disabled);
+
+  --el-border-color: var(--nova-border-color);
+  --el-border-color-light: var(--nova-border-color);
+
+  /* --------------------------------------------------------------------------
+     核心业务组件精细化纠偏 (UI Optimization)
+     -------------------------------------------------------------------------- */
+
+  // 按钮组件：去掉呆板投影，微增高度使其更具现代操作感
+  .el-button {
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    height: 36px;
+    border-radius: var(--nova-radius-base);
+    transition: var(--transition-color, all 0.2s);
+
+    &--large { height: 42px; font-size: 15px; }
+    &--small { height: 30px; padding: 0 12px; }
+
+    // 消除点击后的原生聚焦外边框
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  // 表单输入框组件：剔除清冷白底，注入丝滑的呼吸感动态发光边框
+  .el-input, .el-select, .el-textarea {
+    --el-input-height: 36px;
+
+    .el-input__wrapper, .el-textarea__inner {
+      box-shadow: 0 0 0 1px var(--nova-border-color) inset;
+      background-color: var(--nova-bg-container);
+      transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+      &:hover {
+        box-shadow: 0 0 0 1px var(--nova-border-color-hover) inset;
+      }
+
+      // 核心交互：聚焦时的呼吸发光效果
+      &.is-focus {
+        box-shadow: 0 0 0 1px var(--nova-color-primary) inset,
+        0 0 0 3px rgba(0, 102, 255, 0.12) !important;
+      }
+    }
+  }
+
+  // 独立卡片组件：赋予现代化微弱悬空质感
+  .el-card {
+    --el-card-border-radius: var(--nova-radius-base);
+    --el-card-border-color: var(--nova-border-color);
+    --el-card-bg-color: var(--nova-bg-container);
+    border: 1px solid var(--el-card-border-color);
+    box-shadow: none;
+    transition: all 0.3s ease;
+
+    // 仅在明确声明 hover 阴影时提供上浮反馈，防止仪表盘大面积卡片上浮眼花
+    &.is-hover-shadow:hover {
+      box-shadow: 0 12px 32px 0 rgba(15, 23, 42, 0.04);
+      transform: translateY(-2px);
+    }
+
+    .el-card__header {
+      border-bottom: 1px solid var(--nova-border-color);
+      padding: 14px 20px;
+      font-weight: 600;
+    }
+  }
+
+  // 数据表格组件：去除生硬纵向边框，美化表头，增强留白
+  .el-table {
+    --el-table-border-color: var(--nova-border-color);
+    --el-table-header-bg-color: var(--nova-bg-main);
+    --el-table-bg-color: var(--nova-bg-container);
+    --el-table-tr-bg-color: var(--nova-bg-container);
+
+    th.el-table__cell {
+      font-weight: 600;
+      color: var(--nova-text-main);
+      background-color: var(--el-table-header-bg-color) !important;
+    }
+
+    .el-table__row {
+      transition: background-color 0.2s ease;
+      &:hover > td.el-table__cell {
+        background-color: var(--nova-bg-main) !important; // 优雅的行悬浮反馈
+      }
+    }
+  }
+
+  // 侧边栏菜单组件：完全融于深邃背景，抹除原生边缘 1px 突兀白线
+  .el-menu {
+    border-right: none !important; // 砍掉原生右侧刺眼的白线
+    background-color: transparent;
+
+    .el-menu-item {
+      color: var(--nova-sidebar-text);
+      height: 50px;
+      line-height: 50px;
+      margin: 4px 8px; // 留出呼吸间距，形成悬浮胶囊菜单元件
+      border-radius: var(--nova-radius-base);
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.05) !important;
+        color: var(--nova-sidebar-text-active);
+      }
+
+      &.is-active {
+        background-color: var(--nova-color-primary) !important;
+        color: var(--nova-sidebar-text-active) !important;
+        font-weight: 600;
+      }
+    }
+  }
+
+  // 弹窗对话框组件：加大圆角，阴影虚化扩散
+  .el-dialog {
+    border-radius: var(--nova-radius-large) !important;
+    background-color: var(--nova-bg-container);
+    box-shadow: 0 24px 64px rgba(15, 23, 42, 0.16) !important;
+
+    .el-dialog__header {
+      padding: 20px 24px 14px;
+      margin-right: 0;
+      border-bottom: 1px solid var(--nova-border-color);
+
+      .el-dialog__title {
+        font-weight: 600;
+        font-size: 16px;
+      }
+    }
+
+    .el-dialog__body {
+      padding: 24px;
+    }
+
+    .el-dialog__footer {
+      padding: 12px 24px 20px;
+      border-top: 1px solid var(--nova-border-color);
+    }
+  }
+
+  // 全局消息通知组件 (ElMessage / ElNotification) 视觉美化
+  .el-message {
+    border-radius: var(--nova-radius-base) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+    padding: 12px 20px !important;
+    border: 1px solid var(--nova-border-color) !important;
+    background-color: var(--nova-bg-container) !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   暗黑模式 (Dark Mode) 深度映射
+   -------------------------------------------------------------------------- */
+html.dark {
+  /* 当进入暗黑状态时，一键强行切断并重构 Element 官方的底层控制变量 */
+  --el-bg-color: var(--nova-bg-main);
+  --el-bg-color-overlay: var(--nova-bg-container);
+  --el-mask-color: var(--nova-bg-mask);
+
+  --el-text-color-primary: var(--nova-text-main);
+  --el-text-color-regular: var(--nova-text-regular);
+  --el-text-color-secondary: var(--nova-text-secondary);
+  --el-text-color-placeholder: var(--nova-text-disabled);
+
+  --el-border-color: var(--nova-border-color);
+  --el-border-color-light: var(--nova-border-color);
+  --el-border-color-lighter: var(--nova-border-color);
+  --el-border-color-extra-light: var(--nova-border-color);
+
+  --el-fill-color-blank: var(--nova-bg-container);
+  --el-fill-color-light: var(--nova-bg-main);
+  --el-fill-color-lighter: var(--nova-bg-main);
+
+  // 针对暗黑模式下输入框聚焦的发光色调调低
+  .el-input .el-input__wrapper.is-focus,
+  .el-textarea .el-textarea__inner.is-focus {
+    box-shadow: 0 0 0 1px var(--nova-color-primary) inset,
+    0 0 0 3px rgba(59, 130, 246, 0.15) !important;
+  }
+
+  // 暗黑模式下弹窗和卡片的微弱阴影过滤（防止暗色下出现白光晕伤眼）
+  .el-dialog {
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5) !important;
+  }
+  .el-card.is-hover-shadow:hover {
+    box-shadow: 0 12px 32px 0 rgba(0, 0, 0, 0.3);
+  }
+}

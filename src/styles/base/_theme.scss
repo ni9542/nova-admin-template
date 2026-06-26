@@ -1,0 +1,80 @@
+/* ==========================================================================
+   Nova Admin Template - 现代化全局双主题（明亮 / 暗黑）核心 CSS 变量
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   默认明亮模式 (Light Theme)
+   -------------------------------------------------------------------------- */
+:root {
+  // 品牌核心色彩序列 (极光电弧蓝 - 现代清爽)
+  --nova-color-primary: #0066ff;       // 核心品牌主色
+  --nova-color-primary-hover: #3385ff; // 鼠标悬浮主色
+  --nova-color-primary-active: #0052cc;// 鼠标按下主色
+  --nova-color-primary-light: #e6f0ff; // 激活高亮区的极浅背景底色
+
+  // 状态反馈色彩
+  --nova-color-success: #10b981;       // 翡翠绿 (成功/正常)
+  --nova-color-warning: #f59e0b;       // 琥珀黄 (警告/提示)
+  --nova-color-danger: #ef4444;        // 猩红 (错误/危险)
+  --nova-color-info: #6b7280;          // 石墨灰 (次要/中性)
+
+  // 系统级多阶文本色彩 (高对比、印刷感)
+  --nova-text-main: #111827;           // 一级重要文本 (接近纯黑)
+  --nova-text-regular: #374151;        // 二级普通业务文本
+  --nova-text-secondary: #6b7280;      // 三级次要说明文本
+  --nova-text-disabled: #9ca3af;       // 四级禁用/占位文本
+
+  // 系统级背景色与分流层级 (零度钛白、不刺眼)
+  --nova-bg-main: #f8fafc;             // 整个工作区的底层大背景色
+  --nova-bg-container: #ffffff;        // 卡片、表格、表单等独立容器的纯白背景
+  --nova-bg-mask: rgba(15, 23, 42, 0.6); // 弹窗等高阶遮罩层
+
+  // 边框、分割线及圆角规范
+  --nova-border-color: #e2e8f0;        // 基础轻量分割线
+  --nova-border-color-hover: #cbd5e1;  // 悬浮状态边框
+  --nova-radius-base: 8px;             // 现代感标准圆角
+  --nova-radius-small: 4px;
+  --nova-radius-large: 12px;
+
+  // 后台经典的独立侧边栏色彩体系 (深邃科技蓝)
+  --nova-sidebar-bg: #0f172a;          // 极深石墨蓝
+  --nova-sidebar-text: #94a3b8;        // 菜单未激活字体
+  --nova-sidebar-text-active: #ffffff; // 菜单激活字体
+}
+
+/* --------------------------------------------------------------------------
+   暗黑模式 (Dark Theme)
+   -------------------------------------------------------------------------- */
+html.dark {
+  // 品牌核心色彩序列 (暗黑模式下稍微调低饱和度，防止刺眼)
+  --nova-color-primary: #3b82f6;
+  --nova-color-primary-hover: #60a5fa;
+  --nova-color-primary-active: #2563eb;
+  --nova-color-primary-light: #1e293b;
+
+  // 状态反馈色彩平衡
+  --nova-color-success: #34d399;
+  --nova-color-warning: #fbbf24;
+  --nova-color-danger: #f87171;
+  --nova-color-info: #9ca3af;
+
+  // 暗黑系统级多阶文本色彩 (高透亮、防晕染)
+  --nova-text-main: #f3f4f6;           // 一级高亮文本 (接近纯白)
+  --nova-text-regular: #e5e7eb;        // 二级普通业务文本
+  --nova-text-secondary: #9ca3af;      // 三级次要说明文本
+  --nova-text-disabled: #4b5563;       // 四级禁用/占位文本
+
+  // 暗黑系统级背景色与分流层级 (深邃星空黑，非死黑)
+  --nova-bg-main: #090d16;             // 网页底层大背景
+  --nova-bg-container: #131b2e;        // 卡片、面板纯暗黑底色
+  --nova-bg-mask: rgba(0, 0, 0, 0.8);  // 更深邃的弹窗遮罩层
+
+  // 暗黑边框与分割线
+  --nova-border-color: #1e293b;        // 暗黑下的轻量分割线
+  --nova-border-color-hover: #334155;  // 暗黑悬浮状态边框
+
+  // 暗黑模式下侧边栏与整体融为一体，或者比容器更深一点
+  --nova-sidebar-bg: #090d16;
+  --nova-sidebar-text: #64748b;
+  --nova-sidebar-text-active: #3b82f6;
+}

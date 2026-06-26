@@ -1,0 +1,120 @@
+/* ==========================================================================
+   Nova Admin Template - 现代现代化全局样式重置 (Reset & Normalize)
+   ========================================================================== */
+
+/* 1. 全局盒子模型重置与点击高亮消除 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* 锁死怪异盒子模型，防止 Padding 撑开元素宽度 */
+  margin: 0;
+  padding: 0;
+  outline: none; /* 移除所有点击或聚焦时的原生蓝色边框 */
+  -webkit-tap-highlight-color: transparent; /* 消除移动端点击时的半透明高亮 */
+}
+
+/* 2. 根元素与核心容器重置 */
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  overflow: hidden; /* 后台系统通常由 Layout 内部滚动，根容器需锁死禁止主页面溢出 */
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+  Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+  'Noto Color Emoji';
+  font-size: 14px; /* 后台管理系统最舒适的标准字号 */
+  line-height: 1.5;
+  color: #303133; /* 对应 Element Plus 的 --el-text-color-primary */
+  background-color: #f5f7fa; /* 对应后台经典的浅灰主背景色 */
+
+  /* 文本渲染优化 */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased; /* 开启系统级抗锯齿，使字体在 Mac/Windows 上更显精致 */
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 3. 常见文本与排版元素重置 */
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: 600; /* 统一加粗权重 */
+  color: #1d2129;
+}
+
+a {
+  color: inherit;
+  text-decoration: none; /* 砍掉所有原生下划线 */
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &:hover, &:focus {
+    text-decoration: none;
+  }
+}
+
+/* 4. 列表与语义化标签重置 */
+ul, ol, li {
+  list-style: none; /* 彻底移除无序/有序列表的默认黑点和数字 */
+}
+
+blockquote, q {
+  quotes: none;
+  &::before, &::after { content: ''; content: none; }
+}
+
+/* 5. 多媒体元素重置（解决幽灵空白间隙问题） */
+img, svg, video, canvas, audio {
+  display: inline-block;
+  vertical-align: middle; /* 核心：对齐文本中线，彻底抹除行内块元素底部的 3px~4px 幽灵间隙 */
+  max-width: 100%;
+  height: auto;
+}
+
+/* 6. 表单与原生输入框元素重置 (对齐不同浏览器内核表现) */
+input, button, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+textarea {
+  resize: vertical; /* 允许纵向拉伸，但锁死横向拉伸防止撑爆外层容器布局 */
+}
+
+button {
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed; /* 禁用状态统一显示禁止符号 */
+  }
+}
+
+/* 7. 表格元素重置 */
+table {
+  border-collapse: collapse; /* 单元格边框合并 */
+  border-spacing: 0;
+}
+
+th {
+  text-align: inherit; /* 继承父级对齐方式，移除原生的强制居中 */
+}
+
+/* 8. HTML5 与特殊标签修正 */
+[hidden] {
+  display: none !important; /* 确保 hidden 属性具有最高阶级的隐藏硬约束 */
+}
+
+iframe {
+  border: 0; /* 移除内联框架的陈旧边框 */
+}

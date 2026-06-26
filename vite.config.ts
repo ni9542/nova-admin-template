@@ -44,7 +44,7 @@ export default defineConfig(({ mode }: ConfigEnv) => {
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: `@use "@/styles/variables.scss" as *;`,
+          additionalData: `@use "@/styles/base/variables.scss" as *;`,
           api: 'javascript',
         },
       },
