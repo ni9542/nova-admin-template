@@ -1,0 +1,24 @@
+[tools]
+node = "23"
+pnpm = "latest"
+
+[env]
+# npm 淘宝源
+#NPM_CONFIG_REGISTRY = "https://registry.npmmirror.com"
+
+[tasks.dev-fe]
+# 启动vite项目，如果没有node_modules就先pnpm i然后在启动
+description = "vite start"
+run = "[ -d node_modules ] || pnpm i && pnpm dev"
+
+[tasks.dev-be]
+description = "go start"
+run = "go run server.go"
+
+[tasks.start]
+description = "启动前端和go"
+depends = ["dev-fe", "dev-be"]
+
+[tasks.clean]
+description = "清理本地缓存和node_modules"
+run = "rm -rf node_modules pnpm-lock.yaml"

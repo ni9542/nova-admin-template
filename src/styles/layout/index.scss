@@ -1,0 +1,22 @@
+$top-height: 55px;
+$aside-width: 200px;
+
+.common-layout {
+  width: 100%;
+  height: 100vh;
+  .el-container {
+    width: 100%;
+    height: 100%;
+  }
+  .ly-aside {
+    width: $aside-width;
+  }
+  .ly-height {
+    height: $top-height;
+    background: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

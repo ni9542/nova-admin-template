@@ -1,0 +1,17 @@
+title: "Admin"
+
+# 全局 UI 组件出厂默认尺寸: large / default / small
+size: "default"
+
+# 全局国际化默认语言包: zh-cn / en
+language: "zh-cn"
+
+# 是否固定 Header 顶部导航
+fixedHeader: true
+
+# 是否显示侧边栏 Logo 区域
+sidebarLogo: true
+
+# 开关变量
+showBreadcrumb: true
+showTabs: true

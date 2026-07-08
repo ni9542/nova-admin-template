@@ -1,0 +1,14 @@
+.ly-height {
+  .cursor {
+    cursor: pointer;
+  }
+  .top-right {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+  }
+}

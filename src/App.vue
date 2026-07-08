@@ -19,19 +19,20 @@ const cachedViews = ref<string[]>([])
 </template>
 
 <style lang="scss" scoped>
-/* 页面一键淡入淡出、轻微位移的高级转场动画样式 */
+/* 页面一键淡入淡出高级转场 */
 .fade-transform-leave-active,
 .fade-transform-enter-active {
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
+/* 进场时：透明度 0 并且向左侧偏移 10 像素，然后平滑归位 */
 .fade-transform-enter-from {
   opacity: 0;
-  transform: translateX(-15px);
+  transform: translateX(-10px);
 }
 
+/* 离场时：直接原地淡出即可，视觉观感最干净，不会产生重叠和拉扯感 */
 .fade-transform-leave-to {
   opacity: 0;
-  transform: translateX(15px);
 }
 </style>

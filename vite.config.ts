@@ -1,50 +1,66 @@
-import { fileURLToPath, URL } from 'node:url'
+import {fileURLToPath, URL} from 'node:url'
 import process from 'node:process'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import {ElementPlusResolver} from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
-import { defineConfig, type ConfigEnv, loadEnv } from 'vite'
-import { name, version } from "./package.json"
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import {type ConfigEnv, defineConfig, loadEnv, type PluginOption} from 'vite'
+import {name, version} from "./package.json"
+import {createSvgIconsPlugin} from 'vite-plugin-svg-icons'
+import ElementPlus from 'unplugin-element-plus/vite'
+import yaml from '@rollup/plugin-yaml'
+import IconsResolver from 'unplugin-icons/resolver'
+import Icons from 'unplugin-icons/vite'
 
 // 平台名称、版本信息
 const __APP_INFO__ = {
-  pkg: { name, version },
+  pkg: {name, version},
   buildTimestamp: Date.now(),
 }
 
 // https://vite.dev
-export default defineConfig(({ mode }: ConfigEnv) => {
+export default defineConfig(({mode}: ConfigEnv) => {
   const isProduction = mode === 'production';
   const env = loadEnv(mode, process.cwd());
 
   return {
     plugins: [
       vue(),
+      ElementPlus({useSource: true}),
+      yaml(),
       createSvgIconsPlugin({
         // 指定需要缓存的图标文件夹（我们把图标放在 src/assets/icons 下）
         iconDirs: [fileURLToPath(new URL('./src/assets/icons', import.meta.url))],
         // 指定 symbolId 格式（统一前缀 icon-）
-        symbolId: 'icon-[dir]-[name]',
-      }),
+        symbolId: 'icon-[name]',
+      }) as PluginOption,
       // 自动导入 Vue、Vue Router、Pinia 的相关 API
       AutoImport({
         imports: ['vue', 'vue-router', 'pinia'],
-        resolvers: [ElementPlusResolver({ importStyle: "sass" })],
+        resolvers: [
+          ElementPlusResolver({importStyle: "sass"}),
+        ],
         dts: 'types/auto-imports.d.ts',
         vueTemplate: true,
       }),
+      Icons({
+        autoInstall: true, // 当用到图标时会自动帮你下载对应的包，不用再手动安装 @iconify-json/ep
+      }),
       // 自动导入 Element Plus 等组件
       Components({
+        dirs: ["src/components", "src/**/components", "src/layout/components"],
+        extensions: ['vue'],
+        deep: true,
         resolvers: [
           // 开启 directives: true，防止首屏加载动态 ElLoading/ElMessage 指令时样式闪烁或丢失
           ElementPlusResolver({
             importStyle: "sass",
             directives: true
-          })
+          }),
+          IconsResolver({
+            enabledCollections: ['ep'], // ep 代表 element-plus 的图标库
+          }),
         ],
-        dirs: ["src/components", "src/**/components"],
         dts: 'types/components.d.ts',
       })
     ],
@@ -52,7 +68,7 @@ export default defineConfig(({ mode }: ConfigEnv) => {
       preprocessorOptions: {
         scss: {
           additionalData: `@use "@/styles/base/variables.scss" as *;`,
-          api: 'javascript',
+          api: 'modern-compiler',
         },
       },
     },
@@ -66,7 +82,7 @@ export default defineConfig(({ mode }: ConfigEnv) => {
       port: Number(env.VITE_APP_PORT) || 3000,
       open: true,
       proxy: {
-        [env.VITE_APP_BASE_API] : {
+        [env.VITE_APP_BASE_API]: {
           changeOrigin: true,
           target: env.VITE_APP_API_URL,
           secure: false,
